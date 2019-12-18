@@ -377,7 +377,7 @@ public abstract class Poker {
 			case AF_LOW_TYPE:
 				return valueStringHi(MAX_RANK - (value & HAND), false);
 			case BADUGI_TYPE:
-				//return Badugi.valueString(value);
+				return Badugi.valueString(value);
 			default:
 				throw new RuntimeException("v=" + Integer.toHexString(value));
 		}
@@ -448,7 +448,7 @@ public abstract class Poker {
 			case DS_LOW_TYPE:
 				return rankLo(value, 7);
 			case BADUGI_TYPE:
-				//return Badugi.rank(value);
+				return Badugi.rank(value);
 			default:
 				throw new RuntimeException("v=" + Integer.toHexString(value));
 		}

@@ -1,5 +1,7 @@
-package handreader.deck;
+package handreader.hand;
 
+import handreader.deck.Poker;
+import handreader.deck.PokerUtil;
 import java.awt.*;
 
 import javax.swing.*;
