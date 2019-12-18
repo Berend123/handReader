@@ -47,24 +47,8 @@ public class main extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jComboBox2 = new javax.swing.JComboBox<>();
         cardDisplay = new javax.swing.JPanel();
-        backButton = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
-        jSeparator1 = new javax.swing.JSeparator();
-        jSeparator2 = new javax.swing.JSeparator();
-        jSeparator3 = new javax.swing.JSeparator();
-        jSeparator4 = new javax.swing.JSeparator();
+        jPanel1 = new javax.swing.JPanel();
+        deckPanel1 = new handreader.deck.DeckPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -142,56 +126,25 @@ public class main extends javax.swing.JFrame {
 
         cardDisplay.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        backButton.setText("Back");
-        backButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backButtonActionPerformed(evt);
-            }
-        });
-        cardDisplay.add(backButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jLabel5.setText("Your Card 1: Ah");
-        cardDisplay.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, -1));
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(deckPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(deckPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 606, Short.MAX_VALUE))
+        );
 
-        jLabel6.setText("Your Card 2: Ad");
-        cardDisplay.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, -1, -1));
-
-        jLabel7.setText("Flop: 5h 7d 6s");
-        cardDisplay.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, -1, -1));
-
-        jLabel8.setText("Turn: 8c");
-        cardDisplay.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 120, -1, -1));
-
-        jLabel9.setText("River: 10h");
-        cardDisplay.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 120, -1, -1));
-
-        jLabel10.setText("pair of aces raise RAISE...");
-        cardDisplay.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 160, -1, -1));
-
-        jLabel11.setText("Pre-flop note:");
-        cardDisplay.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, -1, -1));
-
-        jLabel12.setText("Post-flop note:");
-        cardDisplay.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, -1, -1));
-
-        jLabel13.setText("#############");
-        cardDisplay.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 180, -1, -1));
-
-        jLabel14.setText("Turn note:");
-        cardDisplay.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, -1, -1));
-
-        jLabel15.setText("#############");
-        cardDisplay.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 200, -1, -1));
-
-        jLabel16.setText("#############");
-        cardDisplay.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 220, -1, -1));
-
-        jLabel17.setText("River note:");
-        cardDisplay.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, -1, -1));
-        cardDisplay.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 470, -1));
-        cardDisplay.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 470, -1));
-        cardDisplay.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 470, -1));
-        cardDisplay.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 470, -1));
+        cardDisplay.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 660, 760));
 
         cardframe.add(cardDisplay, "card2");
 
@@ -199,16 +152,20 @@ public class main extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(cardframe, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(cardframe, javax.swing.GroupLayout.DEFAULT_SIZE, 679, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(cardframe, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 773, Short.MAX_VALUE)
+            .addComponent(cardframe, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 779, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    
+    
+    
     private void chooseFilePathComboBoxPopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_chooseFilePathComboBoxPopupMenuWillBecomeInvisible
         filePath = chooseFilePathComboBox.getSelectedItem().toString();
         chooseFilePathTextField.setText(filePath);
@@ -224,11 +181,6 @@ public class main extends javax.swing.JFrame {
         
         executor.execute(tailF);
     }//GEN-LAST:event_goButtonActionPerformed
-
-    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
-        CardLayout c = (CardLayout)(cardframe.getLayout());
-        c.show(cardframe, "card1");
-    }//GEN-LAST:event_backButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -266,34 +218,18 @@ public class main extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton backButton;
     private javax.swing.JPanel cardDisplay;
     private javax.swing.JPanel cardframe;
     private javax.swing.JComboBox<String> chooseFilePathComboBox;
     private javax.swing.JTextField chooseFilePathTextField;
+    private handreader.deck.DeckPanel deckPanel1;
     private javax.swing.JButton goButton;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JSeparator jSeparator3;
-    private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel setFilePath;
     // End of variables declaration//GEN-END:variables
 }
