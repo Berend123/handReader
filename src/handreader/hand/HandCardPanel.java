@@ -15,7 +15,11 @@ public class HandCardPanel extends CardPanel {
         public HandCardPanel() {
             super("Hold'em hand", 1, 2);
         }
-        
+
+        public HandCardPanel(String name, int minCards, int maxCards) {
+            super(name, minCards, maxCards);
+        }
+    
 	/**
 	 * create hand card panel with name and number of cards, with the equity
 	 * information optionally positioned either to the right or below the cards
