@@ -1,3 +1,5 @@
+package handreader.chart;
+
 
 import java.awt.*;
 import javax.swing.*;
@@ -7,7 +9,7 @@ import javax.swing.*;
  */
 class RangeButton extends JToggleButton {
 
-    public static final Font cardfont = new Font("SansSerif", Font.PLAIN, 24);
+    public static final Font cardfont = new Font("SansSerif", Font.PLAIN, 12);
 
     private String card;
     private boolean hidden;
