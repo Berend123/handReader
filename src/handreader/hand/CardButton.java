@@ -9,7 +9,7 @@ import javax.swing.*;
 /**
  * toggle button to show blank or specific card.
  */
-class CardButton extends JToggleButton {
+public class CardButton extends JToggleButton {
 	
 	public static final Font cardfont = new Font("SansSerif", Font.PLAIN, 12);
 	
@@ -60,7 +60,7 @@ class CardButton extends JToggleButton {
 	
 	private void update() {
 		if (card != null) {
-			if (hidden) {
+			if (hidden || "-".equals(card)) {
 				setForeground(Color.black);
 				setText("--");
 			} else {

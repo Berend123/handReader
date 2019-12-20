@@ -5,9 +5,15 @@
  */
 package handreader;
 
+import handreader.hand.CardButton;
 import java.awt.CardLayout;
+import java.io.File;
+import java.io.RandomAccessFile;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import javax.swing.SwingUtilities;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  *
@@ -50,8 +56,9 @@ public class main extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         deckPanel1 = new handreader.deck.DeckPanel();
         handCardPanel1 = new handreader.hand.HandCardPanel();
-        handCardPanel2 = new handreader.hand.HandCardPanel("Community Cards", 0, 5);
-        rangeChartPanel1 = new RangeChartPanel();
+        handCommunityCardPanel = new handreader.hand.HandCardPanel("Community Cards", 0, 5);
+        rangeChartPanel1 = new handreader.RangeChartPanel();
+        btn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -84,6 +91,11 @@ public class main extends javax.swing.JFrame {
         jLabel4.setText("Choose search phrase");
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "\"CocosTableState:\"", "CocosTableState:", "UpdateMyCard", "Item 2", "Item 3", "Item 4" }));
+        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout setFilePathLayout = new javax.swing.GroupLayout(setFilePath);
         setFilePath.setLayout(setFilePathLayout);
@@ -122,12 +134,18 @@ public class main extends javax.swing.JFrame {
                 .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(goButton)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(773, Short.MAX_VALUE))
         );
 
         cardframe.add(setFilePath, "card1");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -138,23 +156,30 @@ public class main extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(handCardPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(683, 683, 683)
+                        .addComponent(btn)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(handCardPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(deckPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 474, Short.MAX_VALUE)
-                    .addComponent(rangeChartPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addComponent(handCommunityCardPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(deckPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(55, 55, 55)
+                .addComponent(rangeChartPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(deckPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(7, 7, 7)
-                .addComponent(handCardPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(handCommunityCardPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(handCardPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(rangeChartPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 271, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(handCardPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(rangeChartPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(66, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout cardDisplayLayout = new javax.swing.GroupLayout(cardDisplay);
@@ -183,7 +208,7 @@ public class main extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(cardframe, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 601, Short.MAX_VALUE)
+            .addComponent(cardframe, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -201,13 +226,100 @@ public class main extends javax.swing.JFrame {
     private void goButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_goButtonActionPerformed
         CardLayout c = (CardLayout)(cardframe.getLayout());
         c.show(cardframe, "card2");
+        filePath = chooseFilePathTextField.getText();
+        btn.doClick();
+        btn.hide();
         
+        /*btn.setText("clicked");
         ExecutorService executor = Executors.newFixedThreadPool(4);
         
         LogFileReader tailF = new LogFileReader(filePath, 2000, searchPhrase);
         
-        executor.execute(tailF);
+        executor.execute(tailF)*/;
     }//GEN-LAST:event_goButtonActionPerformed
+
+    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox2ActionPerformed
+
+    private void btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActionPerformed
+
+        System.out.println("Button performed.......");
+        // We're going to do something that takes a long time, so we
+        // spin off a thread and update the display when we're done.
+        Thread worker = new Thread() {
+            private boolean debug = false;
+        private int runEveryNSeconds = 1000;
+        private long lastKnownPosition = 0;
+        private boolean shouldIRun = true;
+        private String searchedText = "CocosTableState:";
+        private File file = new File(filePath); //new File("/home/soufiane/workspace/logfile");
+        private void printLine(String message) {
+            System.out.println(message);
+        }
+
+        private void printLineIfContains(String message) {
+            //btn.setText("AAAgAAA");
+            if (message.contains(searchedText)) {
+                String handCommunity = message.substring(message.indexOf("["), message.indexOf("]"));
+                List<String> handCommunityCards = Arrays.asList(handCommunity.split(" ")).subList(1, 6);
+                List<CardButton> cards = handCommunityCardPanel.getCardButtons();
+                int p = 0;
+                for (String card : handCommunityCards) {
+                    cards.get(p).setCard(card.replace("np", "")); p++;
+                }
+              
+                // Hand binding - always two cards in hand
+                List<CardButton> handCards = handCardPanel1.getCardButtons();
+                int i = 0;
+                List<String> hand = Arrays.asList(message.substring(message.indexOf("players: ")).split(" "));
+                for (String card : hand) {
+                    if (card.contains("dnp") || card.contains("cnp") || card.contains("snp") || card.contains("hnp")) {
+                        handCards.get(i).setCard(card.replace("np", "")); i++;
+                    }
+                }            
+            
+                //System.out.println(message);
+            }
+        }
+        public void stopRunning() {
+            shouldIRun = false;
+        }
+        public void run() {
+            try {
+            while (shouldIRun) {
+                Thread.sleep(runEveryNSeconds);
+                long fileLength = file.length();
+                if (fileLength > lastKnownPosition) {
+
+                    // Reading and writing file
+                    RandomAccessFile readWriteFileAccess = new RandomAccessFile(file, "rw");
+                    readWriteFileAccess.seek(lastKnownPosition);
+                    String line = null;
+                    while ((line = readWriteFileAccess.readLine()) != null) {
+                        this.printLineIfContains(line);
+                    }
+                    lastKnownPosition = readWriteFileAccess.getFilePointer();
+                    readWriteFileAccess.close();
+                } else {
+                    if (debug)
+                        this.printLine("Hmm.. Couldn't found new line after line # ");
+                }
+            }
+            } catch (Exception e) {
+                stopRunning();
+            }
+            
+            SwingUtilities.invokeLater(new Runnable() {
+              public void run() {
+                setEnabled(true);
+              }
+            });
+          }
+        };
+
+        worker.start(); // So we don't hold up the dispatch thread.
+    }//GEN-LAST:event_btnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -245,6 +357,7 @@ public class main extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn;
     private javax.swing.JPanel cardDisplay;
     private javax.swing.JPanel cardframe;
     private javax.swing.JComboBox<String> chooseFilePathComboBox;
@@ -252,14 +365,14 @@ public class main extends javax.swing.JFrame {
     private handreader.deck.DeckPanel deckPanel1;
     private javax.swing.JButton goButton;
     private handreader.hand.HandCardPanel handCardPanel1;
-    private handreader.hand.HandCardPanel handCardPanel2;
+    private handreader.hand.HandCardPanel handCommunityCardPanel;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
-    private RangeChartPanel rangeChartPanel1;
+    private handreader.RangeChartPanel rangeChartPanel1;
     private javax.swing.JPanel setFilePath;
     // End of variables declaration//GEN-END:variables
 }

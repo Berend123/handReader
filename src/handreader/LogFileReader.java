@@ -13,6 +13,7 @@ public class LogFileReader implements Runnable {
     private String searchedText = "";
     private File file = null;
     private static int counter = 0;
+    main m = new main();
 
     public LogFileReader(String myFile, int myInterval, String searchedText) {
         file = new File(myFile);
@@ -27,6 +28,8 @@ public class LogFileReader implements Runnable {
     private void printLineIfContains(String message) {
         if (message.contains(searchedText)) {
             System.out.println(message);
+            int i=0;
+            //m.txtvaleur.setText(i++ +"");
 //            main.jLabel7.setText(message);
         }
     }

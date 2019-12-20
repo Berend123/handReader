@@ -28,7 +28,7 @@
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="cardframe" alignment="1" pref="601" max="32767" attributes="0"/>
+          <Component id="cardframe" alignment="1" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -84,7 +84,7 @@
                       <Component id="jComboBox2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="goButton" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="773" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -149,6 +149,9 @@
                   </StringArray>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jComboBox2ActionPerformed"/>
+              </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
               </AuxValues>
@@ -199,13 +202,19 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
                                   <Component id="handCardPanel1" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="683" max="-2" attributes="0"/>
+                                  <Component id="btn" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
-                              <Component id="handCardPanel2" max="32767" attributes="0"/>
-                              <Component id="deckPanel1" pref="474" max="32767" attributes="0"/>
-                              <Component id="rangeChartPanel1" pref="0" max="32767" attributes="0"/>
+                              <Component id="handCommunityCardPanel" max="32767" attributes="0"/>
+                              <Component id="deckPanel1" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
+                          <Component id="rangeChartPanel1" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -214,12 +223,15 @@
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="deckPanel1" min="-2" pref="146" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
-                          <Component id="handCardPanel2" min="-2" max="-2" attributes="0"/>
+                          <Component id="handCommunityCardPanel" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="handCardPanel1" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="rangeChartPanel1" pref="271" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="handCardPanel1" min="-2" max="-2" attributes="0"/>
+                              <Component id="btn" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
                           <EmptySpace max="-2" attributes="0"/>
+                          <Component id="rangeChartPanel1" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace pref="66" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -229,12 +241,17 @@
                 </Component>
                 <Component class="handreader.hand.HandCardPanel" name="handCardPanel1">
                 </Component>
-                <Component class="handreader.hand.HandCardPanel" name="handCardPanel2">
+                <Component class="handreader.hand.HandCardPanel" name="handCommunityCardPanel">
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new handreader.hand.HandCardPanel(&quot;Community Cards&quot;, 0, 5)"/>
                   </AuxValues>
                 </Component>
-                <Component class="RangeChartPanel" name="rangeChartPanel1">
+                <Component class="handreader.RangeChartPanel" name="rangeChartPanel1">
+                </Component>
+                <Component class="javax.swing.JButton" name="btn">
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnActionPerformed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
