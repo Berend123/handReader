@@ -397,17 +397,18 @@ public class main extends javax.swing.JFrame {
                     }
                 }
                 // TODO : handle this part in case there is a problem
+                
+                List<String> cardsOrder = Arrays.asList("A", "K", "Q", "J", "T", "9", "8", "7", "6", "5", "4", "3", "2");
+                
                 List<RangeButton> rangeButtons = rangeChartPanel1.getRangeButtons();
                 rangeChartPanel1.updateButtons();
                 char f = handCards.get(0).getCard().charAt(0);
-                char s = handCards.get(1).getCard().charAt(0);
-                String value = (s > f)? (char)s + "" + (char)f : (char)f + "" + (char)s;
-                if (value.contains("A")) {
-                    StringBuilder sb = new StringBuilder(value);
-                    value = sb.reverse().toString();
-                }
+                char s = handCards.get(1).getCard().charAt(0); 
                 
-                String cardChartButton = value;
+                int fPosition = cardsOrder.indexOf(f + "");
+                int sPosition = cardsOrder.indexOf(s + "");
+                
+                String value = (sPosition < fPosition)? (char)s + "" + (char)f : (char)f + "" + (char)s;
                 
                 System.out.println("Button to light up = " + value);
                     
@@ -415,21 +416,21 @@ public class main extends javax.swing.JFrame {
                     // Suited case
                     rangeButtons
                             .stream()
-                            .filter(x -> x.getCard().contains(cardChartButton))
+                            .filter(x -> x.getCard().contains(value))
                             .findFirst()
                             .get().lightUp();
                 } else if(handCards.get(0).getCard().charAt(1) == handCards.get(1).getCard().charAt(1)) {
                     // Offsuited case
                     rangeButtons
                             .stream()
-                            .filter(x -> x.getCard().contains(cardChartButton + "s"))
+                            .filter(x -> x.getCard().contains(value + "s"))
                             .findFirst()
                             .get().lightUp();
                 } else {
                     // Offsuited case
                     rangeButtons
                             .stream()
-                            .filter(x -> x.getCard().contains(cardChartButton + "o"))
+                            .filter(x -> x.getCard().contains(value + "o"))
                             .findFirst()
                             .get().lightUp();
                 }
