@@ -28,6 +28,7 @@ public class main extends javax.swing.JFrame {
     
     
     public main() {
+        setAlwaysOnTop(true);
         initComponents();
         setLocationRelativeTo(null);
     }
@@ -362,7 +363,7 @@ public class main extends javax.swing.JFrame {
         // spin off a thread and update the display when we're done.
         Thread worker = new Thread() {
         private boolean debug = false;
-        private int runEveryNSeconds = 2000;
+        private int runEveryNSeconds = 1000;
         private long lastKnownPosition = 0;
         private boolean shouldIRun = true;
         private String searchedText = "CocosTableState:";
@@ -382,11 +383,15 @@ public class main extends javax.swing.JFrame {
                     cards.get(p).setCard(card.replace("np", "")); p++;
                 }
               
+                System.out.println(message);
                 // Hand binding - always two cards in hand
                 List<CardButton> handCards = handCardPanel1.getCardButtons();
                 int i = 0;
                 List<String> hand = Arrays.asList(message.substring(message.indexOf("players: ")).split(" "));
                 for (String card : hand) {
+                    if (i>=2) {
+                        break;
+                    }
                     if (card.contains("dnp") || card.contains("cnp") || card.contains("snp") || card.contains("hnp")) {
                         handCards.get(i).setCard(card.replace("np", "")); i++;
                     }
