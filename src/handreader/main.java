@@ -402,6 +402,10 @@ public class main extends javax.swing.JFrame {
                 char f = handCards.get(0).getCard().charAt(0);
                 char s = handCards.get(1).getCard().charAt(0);
                 String value = (s > f)? (char)s + "" + (char)f : (char)f + "" + (char)s;
+                if (value.contains("A")) {
+                    StringBuilder sb = new StringBuilder(value);
+                    value = sb.reverse().toString();
+                }
                 System.out.println("Button to light up = " + value);
                     
                 if (f == s) {
