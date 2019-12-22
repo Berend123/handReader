@@ -406,27 +406,30 @@ public class main extends javax.swing.JFrame {
                     StringBuilder sb = new StringBuilder(value);
                     value = sb.reverse().toString();
                 }
+                
+                String cardChartButton = value;
+                
                 System.out.println("Button to light up = " + value);
                     
                 if (f == s) {
                     // Suited case
                     rangeButtons
                             .stream()
-                            .filter(x -> x.getCard().contains(value))
+                            .filter(x -> x.getCard().contains(cardChartButton))
                             .findFirst()
                             .get().lightUp();
                 } else if(handCards.get(0).getCard().charAt(1) == handCards.get(1).getCard().charAt(1)) {
                     // Offsuited case
                     rangeButtons
                             .stream()
-                            .filter(x -> x.getCard().contains(value + "s"))
+                            .filter(x -> x.getCard().contains(cardChartButton + "s"))
                             .findFirst()
                             .get().lightUp();
                 } else {
                     // Offsuited case
                     rangeButtons
                             .stream()
-                            .filter(x -> x.getCard().contains(value + "o"))
+                            .filter(x -> x.getCard().contains(cardChartButton + "o"))
                             .findFirst()
                             .get().lightUp();
                 }
