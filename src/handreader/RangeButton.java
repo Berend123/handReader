@@ -57,9 +57,13 @@ class RangeButton extends JToggleButton {
         return hidden;
     }
 
-    private void update() {
+    public void lightUp() {
+        setBackground(Color.green);
+        setForeground(Color.black);
+    }
+    public void update() {
         if (card != null) {
-            if (hidden) {
+            if (hidden || card.contains("-")) {
                 setForeground(Color.black);
                 setText("--");
             } else {

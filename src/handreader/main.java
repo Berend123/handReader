@@ -9,8 +9,6 @@ import handreader.hand.CardButton;
 import java.awt.CardLayout;
 import java.io.File;
 import java.io.RandomAccessFile;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 import javax.swing.SwingUtilities;
 import java.util.Arrays;
 import java.util.List;
@@ -363,8 +361,8 @@ public class main extends javax.swing.JFrame {
         // We're going to do something that takes a long time, so we
         // spin off a thread and update the display when we're done.
         Thread worker = new Thread() {
-            private boolean debug = false;
-        private int runEveryNSeconds = 1000;
+        private boolean debug = false;
+        private int runEveryNSeconds = 2000;
         private long lastKnownPosition = 0;
         private boolean shouldIRun = true;
         private String searchedText = "CocosTableState:";
@@ -392,8 +390,37 @@ public class main extends javax.swing.JFrame {
                     if (card.contains("dnp") || card.contains("cnp") || card.contains("snp") || card.contains("hnp")) {
                         handCards.get(i).setCard(card.replace("np", "")); i++;
                     }
-                }            
-            
+                }
+                // TODO : handle this part in case there is a problem
+                List<RangeButton> rangeButtons = rangeChartPanel1.getRangeButtons();
+                rangeChartPanel1.updateButtons();
+                char f = handCards.get(0).getCard().charAt(0);
+                char s = handCards.get(1).getCard().charAt(0);
+                String value = (s > f)? (char)s + "" + (char)f : (char)f + "" + (char)s;
+                System.out.println("Button to light up = " + value);
+                    
+                if (f == s) {
+                    // Suited case
+                    rangeButtons
+                            .stream()
+                            .filter(x -> x.getCard().contains(value))
+                            .findFirst()
+                            .get().lightUp();
+                } else if(handCards.get(0).getCard().charAt(1) == handCards.get(1).getCard().charAt(1)) {
+                    // Offsuited case
+                    rangeButtons
+                            .stream()
+                            .filter(x -> x.getCard().contains(value + "s"))
+                            .findFirst()
+                            .get().lightUp();
+                } else {
+                    // Offsuited case
+                    rangeButtons
+                            .stream()
+                            .filter(x -> x.getCard().contains(value + "o"))
+                            .findFirst()
+                            .get().lightUp();
+                }
                 //System.out.println(message);
             }
         }
@@ -406,6 +433,7 @@ public class main extends javax.swing.JFrame {
                 Thread.sleep(runEveryNSeconds);
                 long fileLength = file.length();
                 if (fileLength > lastKnownPosition) {
+                    //System.out.println("The file has been updated...");
 
                     // Reading and writing file
                     RandomAccessFile readWriteFileAccess = new RandomAccessFile(file, "rw");
@@ -423,6 +451,7 @@ public class main extends javax.swing.JFrame {
             }
             } catch (Exception e) {
                 stopRunning();
+                e.printStackTrace();
             }
             
             SwingUtilities.invokeLater(new Runnable() {

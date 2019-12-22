@@ -105,5 +105,14 @@ public class RangeChartPanel extends JPanel {
 			}
 		}
 	}
-	
+
+    public List<handreader.RangeButton> getRangeButtons() {
+        return rangeButtons;
+    }
+    
+    public void updateButtons() {
+        for (RangeButton b : rangeButtons) {
+            b.update();
+	}
+    }
 }
