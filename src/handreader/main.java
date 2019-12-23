@@ -423,6 +423,8 @@ public class main extends javax.swing.JFrame {
                     }
                     if (card.contains("dnp") || card.contains("cnp") || card.contains("snp") || card.contains("hnp")) {
                         handCards.get(i).setCard(card.replace("np", "")); i++;
+                    } else if ("-".equals(card)) {
+                        handCards.get(i).setCard(card); i++;
                     }
                 }
                 // TODO : handle this part in case there is a problem
@@ -440,7 +442,8 @@ public class main extends javax.swing.JFrame {
                 String value = (sPosition < fPosition)? (char)s + "" + (char)f : (char)f + "" + (char)s;
                 
                 System.out.println("Button to light up = " + value);
-                    
+                
+                if (!value.contains("-")) {
                 if (f == s) {
                     // Suited case
                     rangeButtons
@@ -462,6 +465,7 @@ public class main extends javax.swing.JFrame {
                             .filter(x -> x.getCard().contains(value + "o"))
                             .findFirst()
                             .get().lightUp();
+                }
                 }
                 //System.out.println(message);
             }
