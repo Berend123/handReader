@@ -5,6 +5,17 @@
  */
 package handreader;
 
+import handreader.charts.ChartBTN1013;
+import handreader.charts.ChartBTN1417;
+import handreader.charts.ChartBTN1825;
+import handreader.charts.ChartBTN9less;
+import handreader.charts.ChartSBBTNl1825;
+import handreader.charts.ChartSBBTNr1013;
+import handreader.charts.ChartSBBTNr1417;
+import handreader.charts.ChartSBBTNr1825;
+import handreader.charts.ChartSBBTNr9less;
+import handreader.charts.ChartSBBTNshove9less;
+import handreader.charts.ChartStrategy;
 import handreader.hand.CardButton;
 import java.awt.CardLayout;
 import java.io.File;
@@ -63,18 +74,18 @@ public class main extends javax.swing.JFrame {
         btn = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
-        jRadioButton4 = new javax.swing.JRadioButton();
+        btnPosition = new javax.swing.JRadioButton();
+        smallBlindPosition = new javax.swing.JRadioButton();
+        bigBlindPosition = new javax.swing.JRadioButton();
+        limpAction = new javax.swing.JRadioButton();
         jLabel6 = new javax.swing.JLabel();
-        jRadioButton5 = new javax.swing.JRadioButton();
-        jRadioButton6 = new javax.swing.JRadioButton();
-        jRadioButton7 = new javax.swing.JRadioButton();
+        raiseAction = new javax.swing.JRadioButton();
+        shoveAction = new javax.swing.JRadioButton();
+        stack1825 = new javax.swing.JRadioButton();
         jLabel10 = new javax.swing.JLabel();
-        jRadioButton8 = new javax.swing.JRadioButton();
-        jRadioButton9 = new javax.swing.JRadioButton();
-        jRadioButton10 = new javax.swing.JRadioButton();
+        stack1417 = new javax.swing.JRadioButton();
+        stack1013 = new javax.swing.JRadioButton();
+        stack9 = new javax.swing.JRadioButton();
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -176,29 +187,64 @@ public class main extends javax.swing.JFrame {
 
         jLabel5.setText("Position");
 
-        jRadioButton1.setText("BTN");
+        btnPosition.setText("BTN");
+        btnPosition.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPositionActionPerformed(evt);
+            }
+        });
 
-        jRadioButton2.setText("Small Blind");
+        smallBlindPosition.setText("Small Blind");
+        smallBlindPosition.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                smallBlindPositionActionPerformed(evt);
+            }
+        });
 
-        jRadioButton3.setText("Big Blind");
+        bigBlindPosition.setText("Big Blind");
+        bigBlindPosition.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bigBlindPositionActionPerformed(evt);
+            }
+        });
 
-        jRadioButton4.setText("Limp");
+        limpAction.setText("Limp");
 
         jLabel6.setText("Action");
 
-        jRadioButton5.setText("Raise");
+        raiseAction.setText("Raise");
 
-        jRadioButton6.setText("Shove");
+        shoveAction.setText("Shove");
 
-        jRadioButton7.setText("18-25");
+        stack1825.setText("18-25");
+        stack1825.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                stack1825ActionPerformed(evt);
+            }
+        });
 
         jLabel10.setText("Effective Stack");
 
-        jRadioButton8.setText("14-17");
+        stack1417.setText("14-17");
+        stack1417.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                stack1417ActionPerformed(evt);
+            }
+        });
 
-        jRadioButton9.setText("10-13");
+        stack1013.setText("10-13");
+        stack1013.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                stack1013ActionPerformed(evt);
+            }
+        });
 
-        jRadioButton10.setText(">9");
+        stack9.setText(">9");
+        stack9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                stack9ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -222,22 +268,22 @@ public class main extends javax.swing.JFrame {
                     .addComponent(jButton1)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jRadioButton1)
-                            .addComponent(jRadioButton2)
-                            .addComponent(jRadioButton3))
+                            .addComponent(btnPosition)
+                            .addComponent(smallBlindPosition)
+                            .addComponent(bigBlindPosition))
                         .addGap(51, 51, 51)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jRadioButton4)
-                            .addComponent(jRadioButton5)
-                            .addComponent(jRadioButton6)
+                            .addComponent(limpAction)
+                            .addComponent(raiseAction)
+                            .addComponent(shoveAction)
                             .addComponent(jLabel6))
                         .addGap(89, 89, 89)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel10)
-                            .addComponent(jRadioButton7)
-                            .addComponent(jRadioButton8)
-                            .addComponent(jRadioButton9)
-                            .addComponent(jRadioButton10))))
+                            .addComponent(stack1825)
+                            .addComponent(stack1417)
+                            .addComponent(stack1013)
+                            .addComponent(stack9))))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -259,21 +305,21 @@ public class main extends javax.swing.JFrame {
                     .addComponent(jLabel10))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jRadioButton4)
-                    .addComponent(jRadioButton7))
+                    .addComponent(btnPosition)
+                    .addComponent(limpAction)
+                    .addComponent(stack1825))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButton2)
-                    .addComponent(jRadioButton5)
-                    .addComponent(jRadioButton8))
+                    .addComponent(smallBlindPosition)
+                    .addComponent(raiseAction)
+                    .addComponent(stack1417))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButton3)
-                    .addComponent(jRadioButton6)
-                    .addComponent(jRadioButton9))
+                    .addComponent(bigBlindPosition)
+                    .addComponent(shoveAction)
+                    .addComponent(stack1013))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jRadioButton10)
+                .addComponent(stack9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addComponent(jButton1))
         );
@@ -466,6 +512,85 @@ public class main extends javax.swing.JFrame {
         c.show(cardframe, "card1");
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void btnPositionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPositionActionPerformed
+
+
+        smallBlindPosition.setSelected(false);
+        bigBlindPosition.setSelected(false);        
+    }//GEN-LAST:event_btnPositionActionPerformed
+
+    private void stack1825ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stack1825ActionPerformed
+        stack1417.setSelected(false);
+        stack1013.setSelected(false);
+        stack9.setSelected(false);
+        
+        if (smallBlindPosition.isSelected() && raiseAction.isSelected()) {
+            displayStrategy(new ChartSBBTNr1825());
+        } else if (smallBlindPosition.isSelected() && limpAction.isSelected()) {
+            displayStrategy(new ChartSBBTNl1825());
+        } else if (btnPosition.isSelected()) {
+            displayStrategy(new ChartBTN1825());
+        }
+    }//GEN-LAST:event_stack1825ActionPerformed
+
+    private void displayStrategy(ChartStrategy chart) {
+        List<RangeButton> chartButtons = rangeChartPanel1.getRangeButtons();
+            int i = 0;
+            String[][] chartColors = chart.getChart();
+            for (int j = 0; j < 13; j++) {
+                for (int k = 0; k < 13; k++) {
+                    chartButtons.get(i++).lightStrategy(chartColors[j][k]);
+                }
+            }
+    }
+    
+    private void stack1417ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stack1417ActionPerformed
+
+        stack1825.setSelected(false);
+        stack1013.setSelected(false);
+        stack9.setSelected(false);
+        
+        if (smallBlindPosition.isSelected() && raiseAction.isSelected()) {
+            displayStrategy(new ChartSBBTNr1417());
+        } else if (btnPosition.isSelected()) {
+            displayStrategy(new ChartBTN1417());
+        }
+    }//GEN-LAST:event_stack1417ActionPerformed
+
+    private void stack1013ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stack1013ActionPerformed
+        stack1825.setSelected(false);
+        stack1417.setSelected(false);
+        stack9.setSelected(false);
+        
+        if (smallBlindPosition.isSelected() && raiseAction.isSelected()) {
+            displayStrategy(new ChartSBBTNr1013());
+        } else if (btnPosition.isSelected()) {
+            displayStrategy(new ChartBTN1013());
+        }
+    }//GEN-LAST:event_stack1013ActionPerformed
+
+    private void stack9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stack9ActionPerformed
+        stack1825.setSelected(false);
+        stack1417.setSelected(false);
+        stack1013.setSelected(false);
+        
+        if (smallBlindPosition.isSelected() && raiseAction.isSelected()) {
+            displayStrategy(new ChartSBBTNr9less());
+        } else if (btnPosition.isSelected()) {
+            displayStrategy(new ChartBTN9less());
+        }
+    }//GEN-LAST:event_stack9ActionPerformed
+
+    private void smallBlindPositionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_smallBlindPositionActionPerformed
+        btnPosition.setSelected(false);
+        bigBlindPosition.setSelected(false);
+    }//GEN-LAST:event_smallBlindPositionActionPerformed
+
+    private void bigBlindPositionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bigBlindPositionActionPerformed
+        btnPosition.setSelected(false);
+        smallBlindPosition.setSelected(false);
+    }//GEN-LAST:event_bigBlindPositionActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -502,7 +627,9 @@ public class main extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JRadioButton bigBlindPosition;
     private javax.swing.JButton btn;
+    private javax.swing.JRadioButton btnPosition;
     private javax.swing.JPanel cardDisplay;
     private javax.swing.JPanel cardframe;
     private javax.swing.JComboBox<String> chooseFilePathComboBox;
@@ -521,20 +648,18 @@ public class main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton10;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
-    private javax.swing.JRadioButton jRadioButton4;
-    private javax.swing.JRadioButton jRadioButton5;
-    private javax.swing.JRadioButton jRadioButton6;
-    private javax.swing.JRadioButton jRadioButton7;
-    private javax.swing.JRadioButton jRadioButton8;
-    private javax.swing.JRadioButton jRadioButton9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JRadioButton limpAction;
+    private javax.swing.JRadioButton raiseAction;
     private handreader.RangeChartPanel rangeChartPanel1;
     private javax.swing.JPanel setFilePath;
+    private javax.swing.JRadioButton shoveAction;
+    private javax.swing.JRadioButton smallBlindPosition;
+    private javax.swing.JRadioButton stack1013;
+    private javax.swing.JRadioButton stack1417;
+    private javax.swing.JRadioButton stack1825;
+    private javax.swing.JRadioButton stack9;
     // End of variables declaration//GEN-END:variables
 }
 

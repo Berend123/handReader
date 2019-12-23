@@ -61,6 +61,22 @@ class RangeButton extends JToggleButton {
         setBackground(Color.green);
         setForeground(Color.black);
     }
+    
+    public void lightStrategy(String colorLetter) {
+        Color color = null;
+        if ("R".equals(colorLetter)) {
+            color = new Color(153, 0, 0);
+        } else if ("G".equals(colorLetter)) {
+            color = new Color(0, 102, 0);
+        } else if ("N".equals(colorLetter)) {
+            color = Color.gray;
+        } else {
+            color = Color.blue;
+        }
+        setBackground(color);
+        setForeground(Color.white);
+    }
+    
     public void update() {
         if (card != null) {
             if (hidden || card.contains("-")) {
