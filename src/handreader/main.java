@@ -416,6 +416,7 @@ public class main extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBox2ActionPerformed
 
     private static String myPosInChart = "";
+    private Boolean isHandEmpty = true;
     
     private void btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActionPerformed
 
@@ -449,16 +450,23 @@ public class main extends javax.swing.JFrame {
                 List<CardButton> handCards = handCardPanel1.getCardButtons();
                 int i = 0;
                 List<String> hand = Arrays.asList(message.substring(message.indexOf("players: ")).split(" "));
+                isHandEmpty = true;
                 for (String card : hand) {
                     if (i>=2) {
                         break;
                     }
                     if (card.contains("dnp") || card.contains("cnp") || card.contains("snp") || card.contains("hnp")) {
                         handCards.get(i).setCard(card.replace("np", "")); i++;
-                    } else if ("-".equals(card)) {
-                        handCards.get(i).setCard(card); i++;
+                        isHandEmpty = false;
+                    } 
+                }
+                
+                for (int j = 0; j < 2; j++) {
+                    if (isHandEmpty) {
+                        handCards.get(j).setCard("-");
                     }
                 }
+                
                 // TODO : handle this part in case there is a problem
                 
                 List<String> cardsOrder = Arrays.asList("A", "K", "Q", "J", "T", "9", "8", "7", "6", "5", "4", "3", "2");
@@ -590,7 +598,7 @@ public class main extends javax.swing.JFrame {
             for (int j = 0; j < 13; j++) {
                 for (int k = 0; k < 13; k++) {
                     chartButtons.get(i).lightStrategy(chartColors[j][k], false);
-                    if (chartButtons.get(i).getCard().contains(myPosInChart)) {
+                    if (chartButtons.get(i).getCard().contains(myPosInChart) && !isHandEmpty) {
                         chartButtons.get(i).lightStrategy(chartColors[j][k], true);
                     }
                     i++;
