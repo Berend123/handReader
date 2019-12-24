@@ -385,6 +385,8 @@ public class main extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox2ActionPerformed
 
+    private static String myPosInChart = "";
+    
     private void btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActionPerformed
 
         System.out.println("Button performed.......");
@@ -432,7 +434,7 @@ public class main extends javax.swing.JFrame {
                 List<String> cardsOrder = Arrays.asList("A", "K", "Q", "J", "T", "9", "8", "7", "6", "5", "4", "3", "2");
                 
                 List<RangeButton> rangeButtons = rangeChartPanel1.getRangeButtons();
-                rangeChartPanel1.updateButtons();
+                //rangeChartPanel1.updateButtons();
                 char f = handCards.get(0).getCard().charAt(0);
                 char s = handCards.get(1).getCard().charAt(0); 
                 
@@ -445,26 +447,29 @@ public class main extends javax.swing.JFrame {
                 
                 if (!value.contains("-")) {
                 if (f == s) {
-                    // Suited case
-                    rangeButtons
+                    myPosInChart = value;
+                    // middle case
+                    /*rangeButtons
                             .stream()
                             .filter(x -> x.getCard().contains(value))
                             .findFirst()
-                            .get().lightUp();
+                            .get().lightUp();*/
                 } else if(handCards.get(0).getCard().charAt(1) == handCards.get(1).getCard().charAt(1)) {
-                    // Offsuited case
-                    rangeButtons
+                    myPosInChart = value + "s";
+                    // Suited case
+                    /*rangeButtons
                             .stream()
                             .filter(x -> x.getCard().contains(value + "s"))
                             .findFirst()
-                            .get().lightUp();
+                            .get().lightUp();*/
                 } else {
+                    myPosInChart = value + "o";
                     // Offsuited case
-                    rangeButtons
+                    /*rangeButtons
                             .stream()
                             .filter(x -> x.getCard().contains(value + "o"))
                             .findFirst()
-                            .get().lightUp();
+                            .get().lightUp();*/
                 }
                 }
                 //System.out.println(message);
@@ -543,7 +548,11 @@ public class main extends javax.swing.JFrame {
             String[][] chartColors = chart.getChart();
             for (int j = 0; j < 13; j++) {
                 for (int k = 0; k < 13; k++) {
-                    chartButtons.get(i++).lightStrategy(chartColors[j][k]);
+                    chartButtons.get(i).lightStrategy(chartColors[j][k], false);
+                    if (chartButtons.get(i).getCard().contains(myPosInChart)) {
+                        chartButtons.get(i).lightStrategy(chartColors[j][k], true);
+                    }
+                    i++;
                 }
             }
     }
