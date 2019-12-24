@@ -5,15 +5,30 @@
  */
 package handreader;
 
+import handreader.charts.ChartBBSBr1013;
+import handreader.charts.ChartBBSBl1013;
+import handreader.charts.ChartBBSBl1417;
+import handreader.charts.ChartBBSBl1825;
+import handreader.charts.ChartBBSBl9less;
+import handreader.charts.ChartBBSBr1417;
+import handreader.charts.ChartBBSBr1825;
+import handreader.charts.ChartBBSBr9less;
+import handreader.charts.ChartBBSBshove;
 import handreader.charts.ChartBTN1013;
 import handreader.charts.ChartBTN1417;
 import handreader.charts.ChartBTN1825;
 import handreader.charts.ChartBTN9less;
+import handreader.charts.ChartSBBTNl1013;
+import handreader.charts.ChartSBBTNl1417;
 import handreader.charts.ChartSBBTNl1825;
+import handreader.charts.ChartSBBTNl9less;
 import handreader.charts.ChartSBBTNr1013;
 import handreader.charts.ChartSBBTNr1417;
 import handreader.charts.ChartSBBTNr1825;
 import handreader.charts.ChartSBBTNr9less;
+import handreader.charts.ChartSBBTNshove1013;
+import handreader.charts.ChartSBBTNshove1417;
+import handreader.charts.ChartSBBTNshove1825;
 import handreader.charts.ChartSBBTNshove9less;
 import handreader.charts.ChartStrategy;
 import handreader.hand.CardButton;
@@ -78,8 +93,8 @@ public class main extends javax.swing.JFrame {
         smallBlindPosition = new javax.swing.JRadioButton();
         bigBlindPosition = new javax.swing.JRadioButton();
         limpAction = new javax.swing.JRadioButton();
-        jLabel6 = new javax.swing.JLabel();
         raiseAction = new javax.swing.JRadioButton();
+        jLabel6 = new javax.swing.JLabel();
         shoveAction = new javax.swing.JRadioButton();
         stack1825 = new javax.swing.JRadioButton();
         jLabel10 = new javax.swing.JLabel();
@@ -209,12 +224,27 @@ public class main extends javax.swing.JFrame {
         });
 
         limpAction.setText("Limp");
+        limpAction.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                limpActionActionPerformed(evt);
+            }
+        });
+
+        raiseAction.setText("Raise");
+        raiseAction.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                raiseActionActionPerformed(evt);
+            }
+        });
 
         jLabel6.setText("Action");
 
-        raiseAction.setText("Raise");
-
         shoveAction.setText("Shove");
+        shoveAction.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                shoveActionActionPerformed(evt);
+            }
+        });
 
         stack1825.setText("18-25");
         stack1825.addActionListener(new java.awt.event.ActionListener() {
@@ -522,13 +552,16 @@ public class main extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnPositionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPositionActionPerformed
-
+        btnPosition.setSelected(true);
+        smallBlindPosition.setSelected(false);
+        bigBlindPosition.setSelected(false);
 
         smallBlindPosition.setSelected(false);
         bigBlindPosition.setSelected(false);        
     }//GEN-LAST:event_btnPositionActionPerformed
 
     private void stack1825ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stack1825ActionPerformed
+        stack1825.setSelected(true);
         stack1417.setSelected(false);
         stack1013.setSelected(false);
         stack9.setSelected(false);
@@ -537,6 +570,14 @@ public class main extends javax.swing.JFrame {
             displayStrategy(new ChartSBBTNr1825());
         } else if (smallBlindPosition.isSelected() && limpAction.isSelected()) {
             displayStrategy(new ChartSBBTNl1825());
+        } else if (smallBlindPosition.isSelected() && shoveAction.isSelected()) {
+            displayStrategy(new ChartSBBTNshove1825());
+        } else if (bigBlindPosition.isSelected() && limpAction.isSelected()) {
+            displayStrategy(new ChartBBSBl1825());
+        } else if (bigBlindPosition.isSelected() && raiseAction.isSelected()) {
+            displayStrategy(new ChartBBSBr1825());
+        } else if (bigBlindPosition.isSelected() && shoveAction.isSelected()) {
+            displayStrategy(new ChartBBSBshove());
         } else if (btnPosition.isSelected()) {
             displayStrategy(new ChartBTN1825());
         }
@@ -558,13 +599,26 @@ public class main extends javax.swing.JFrame {
     }
     
     private void stack1417ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stack1417ActionPerformed
-
+        
         stack1825.setSelected(false);
+        stack1417.setSelected(true);
         stack1013.setSelected(false);
         stack9.setSelected(false);
         
         if (smallBlindPosition.isSelected() && raiseAction.isSelected()) {
             displayStrategy(new ChartSBBTNr1417());
+        } else if (smallBlindPosition.isSelected() && limpAction.isSelected()) {
+            displayStrategy(new ChartSBBTNl1417());
+        } else if (smallBlindPosition.isSelected() && shoveAction.isSelected()) {
+            displayStrategy(new ChartSBBTNshove1417());
+        } else if (bigBlindPosition.isSelected() && limpAction.isSelected()) {
+            displayStrategy(new ChartBBSBl1417());
+        } else if (bigBlindPosition.isSelected() && raiseAction.isSelected()) {
+            displayStrategy(new ChartBBSBr1417());
+        } else if (bigBlindPosition.isSelected() && shoveAction.isSelected()) {
+            displayStrategy(new ChartBBSBshove());
+        } else if (bigBlindPosition.isSelected() && shoveAction.isSelected()) {
+            displayStrategy(new ChartBBSBshove());
         } else if (btnPosition.isSelected()) {
             displayStrategy(new ChartBTN1417());
         }
@@ -573,10 +627,19 @@ public class main extends javax.swing.JFrame {
     private void stack1013ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stack1013ActionPerformed
         stack1825.setSelected(false);
         stack1417.setSelected(false);
+        stack1013.setSelected(true);
         stack9.setSelected(false);
         
         if (smallBlindPosition.isSelected() && raiseAction.isSelected()) {
             displayStrategy(new ChartSBBTNr1013());
+        } else if (smallBlindPosition.isSelected() && limpAction.isSelected()) {
+            displayStrategy(new ChartSBBTNl1013());
+        } else if (smallBlindPosition.isSelected() && shoveAction.isSelected()) {
+            displayStrategy(new ChartSBBTNshove1013());
+        } else if (bigBlindPosition.isSelected() && limpAction.isSelected()) {
+            displayStrategy(new ChartBBSBl1013());
+        } else if (bigBlindPosition.isSelected() && raiseAction.isSelected()) {
+            displayStrategy(new ChartBBSBr1013());
         } else if (btnPosition.isSelected()) {
             displayStrategy(new ChartBTN1013());
         }
@@ -586,9 +649,20 @@ public class main extends javax.swing.JFrame {
         stack1825.setSelected(false);
         stack1417.setSelected(false);
         stack1013.setSelected(false);
+        stack9.setSelected(true);
         
         if (smallBlindPosition.isSelected() && raiseAction.isSelected()) {
             displayStrategy(new ChartSBBTNr9less());
+        } else if (smallBlindPosition.isSelected() && limpAction.isSelected()) {
+            displayStrategy(new ChartSBBTNl9less());
+        } else if (smallBlindPosition.isSelected() && shoveAction.isSelected()) {
+            displayStrategy(new ChartSBBTNshove9less());
+        } else if (bigBlindPosition.isSelected() && limpAction.isSelected()) {
+            displayStrategy(new ChartBBSBl9less());
+        } else if (bigBlindPosition.isSelected() && raiseAction.isSelected()) {
+            displayStrategy(new ChartBBSBr9less());
+        } else if (bigBlindPosition.isSelected() && shoveAction.isSelected()) {
+            displayStrategy(new ChartBBSBshove());
         } else if (btnPosition.isSelected()) {
             displayStrategy(new ChartBTN9less());
         }
@@ -596,13 +670,33 @@ public class main extends javax.swing.JFrame {
 
     private void smallBlindPositionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_smallBlindPositionActionPerformed
         btnPosition.setSelected(false);
+        smallBlindPosition.setSelected(true);
         bigBlindPosition.setSelected(false);
     }//GEN-LAST:event_smallBlindPositionActionPerformed
 
     private void bigBlindPositionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bigBlindPositionActionPerformed
         btnPosition.setSelected(false);
         smallBlindPosition.setSelected(false);
+        bigBlindPosition.setSelected(true);
     }//GEN-LAST:event_bigBlindPositionActionPerformed
+
+    private void limpActionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_limpActionActionPerformed
+        limpAction.setSelected(true);
+        raiseAction.setSelected(false);
+        shoveAction.setSelected(false);
+    }//GEN-LAST:event_limpActionActionPerformed
+
+    private void raiseActionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_raiseActionActionPerformed
+        limpAction.setSelected(false);
+        raiseAction.setSelected(true);
+        shoveAction.setSelected(false);
+    }//GEN-LAST:event_raiseActionActionPerformed
+
+    private void shoveActionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_shoveActionActionPerformed
+        limpAction.setSelected(false);
+        raiseAction.setSelected(false);
+        shoveAction.setSelected(true);
+    }//GEN-LAST:event_shoveActionActionPerformed
 
     /**
      * @param args the command line arguments

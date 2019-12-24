@@ -369,21 +369,30 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Limp"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="limpActionActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JRadioButton" name="raiseAction">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Raise"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="raiseActionActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel6">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Action"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JRadioButton" name="raiseAction">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Raise"/>
-                  </Properties>
-                </Component>
                 <Component class="javax.swing.JRadioButton" name="shoveAction">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Shove"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="shoveActionActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JRadioButton" name="stack1825">
                   <Properties>

@@ -57,21 +57,21 @@ class CardButton extends JToggleButton {
 	}
 	
 	private void update() {
-		if (card != null) {
-			if (hidden) {
-				setForeground(Color.black);
-				setText("--");
-			} else {
-				setForeground(PokerUtil.suitColour(Poker.suit(card)));
-				char f = Poker.face(card);
-				char s = PokerUtil.suitSymbol(card, true);
-				// doesn't fit
-				//setText(f == 'T' ? "10" + s : "" + f + s);
-				setText("" + f + s);
-			}
-		} else {
-			setText("  ");
-		}
-	}
+if (card != null) {
+if (hidden || "-".equals(card)) {
+setForeground(Color.black);
+setText("--");
+} else {
+setForeground(PokerUtil.suitColour(Poker.suit(card)));
+char f = Poker.face(card);
+char s = PokerUtil.suitSymbol(card, true);
+// doesn't fit
+//setText(f == 'T' ? "10" + s : "" + f + s);
+setText("" + f + s);
+}
+} else {
+setText(" ");
+}
+}
 	
 }
